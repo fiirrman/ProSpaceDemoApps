@@ -10,6 +10,6 @@ The application is built using the basic swift language. All task that was asked
 
 APPS DESIGN
 
-App design UI included in this submission
+App design document UI included in this repo
 
 Thank You
