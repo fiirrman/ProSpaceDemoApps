@@ -1,0 +1,20 @@
+PODS:
+  - SKPhotoBrowser (6.1.0)
+  - TLPhotoPicker (1.8.9)
+
+DEPENDENCIES:
+  - SKPhotoBrowser
+  - TLPhotoPicker (~> 1.8.3)
+
+SPEC REPOS:
+  trunk:
+    - SKPhotoBrowser
+    - TLPhotoPicker
+
+SPEC CHECKSUMS:
+  SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
+  TLPhotoPicker: 9bf255c116129bc5d709b4cc8b42b3542e89e841
+
+PODFILE CHECKSUM: 8892c7d9979d4e5efb93ca86f9c931579bcba224
+
+COCOAPODS: 1.9.1
