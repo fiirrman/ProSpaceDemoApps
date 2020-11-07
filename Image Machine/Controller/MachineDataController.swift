@@ -185,18 +185,22 @@ class MachineDataController: UIViewController{
     
     func deleteData(){
         let objDB = dbMachine[indexNow]
-        let dataName = Convert.toString(value: objDB.value(forKeyPath: "id"))
+        let dataId = Convert.toString(value: objDB.value(forKeyPath: "id"))
         
         // set context
         let context = appDelegate!.persistentContainer.viewContext
         
         // delete image
         let fetchData = NSFetchRequest<NSManagedObject>(entityName: "MachineData")
-        fetchData.predicate = NSPredicate(format: "id == %@",dataName)
+        fetchData.predicate = NSPredicate(format: "id == %@",dataId)
+        
+        
+        // delete image
+        let fetchData2 = NSFetchRequest<NSManagedObject>(entityName: "DetailMachineData")
+        fetchData2.predicate = NSPredicate(format: "id == %@",dataId)
         
         do {
             dbMachine = try context.fetch(fetchData)
-            print(dbMachine.count)
             let objToDel = dbMachine[0]
             context.delete(objToDel)
             
@@ -206,6 +210,22 @@ class MachineDataController: UIViewController{
             }
             
             AlertShow.basicAlert(vc: self, title: "", message: "1 Item Deleted Successfully", buttonText: "Close")
+            setupMachineData()
+        } catch let error as NSError {
+            AlertShow.basicAlert(vc: self, title: "", message: "Could not fetch. \(error.localizedDescription)", buttonText: "Close")
+        }
+        
+        do {
+            dbMachine = try context.fetch(fetchData2)
+            let objToDel = dbMachine[0]
+            context.delete(objToDel)
+            
+            do {
+                try context.save()
+            } catch{
+            }
+            
+            //AlertShow.basicAlert(vc: self, title: "", message: "1 Item Deleted Successfully", buttonText: "Close")
             setupMachineData()
         } catch let error as NSError {
             AlertShow.basicAlert(vc: self, title: "", message: "Could not fetch. \(error.localizedDescription)", buttonText: "Close")
